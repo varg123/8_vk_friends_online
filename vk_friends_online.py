@@ -25,11 +25,15 @@ def get_online_friends(login, password):
 
 def output_friends_to_console(friends_online):
     count_friends = len(friends_online)
-    print(f"Друзья в онлайне {count_friends}:")
+    print(
+        "Друзья в онлайне {}:".format(count_friends)
+    )
     for friend in friends_online:
         first_name = friend['first_name']
         last_name = friend['last_name']
-        print(f"{last_name} {first_name}")
+        print(
+            "{} {}".format(last_name,first_name)
+        )
 
 
 def main():
