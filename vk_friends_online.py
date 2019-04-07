@@ -1,7 +1,9 @@
 import vk
 from getpass import getpass
+import requests
 
 APP_ID = -1
+VK_API_VERSION = '5.92'
 
 
 def get_online_friends(login, password):
@@ -13,7 +15,7 @@ def get_online_friends(login, password):
     )
     api = vk.API(
         session,
-        v='5.92'
+        v=VK_API_VERSION
     )
     fields = [
         'first_name',
@@ -43,7 +45,9 @@ def main():
     try:
         friends_online = get_online_friends(login, password)
     except vk.exceptions.VkAuthError:
-        exit()
+        exit("Неверный логин или пароль")
+    except requests.exceptions.ConnectionError:
+        exit("Ошибка соединения")
     output_friends_to_console(friends_online)
 
 if __name__ == '__main__':
